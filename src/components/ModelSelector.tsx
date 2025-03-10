@@ -317,6 +317,12 @@ export function ModelSelector({
 				navigateTo("model");
 				return geminiModels;
 			}
+			if (selectedProvider === "copilot") {
+				const copilotModels = models[selectedProvider as keyof typeof models];
+				setAvailableModels(copilotModels);
+				navigateTo("model");
+				return copilotModels;
+			}
 
 			// For all other providers, use the OpenAI client
 			const baseURL = providers[selectedProvider]?.baseURL;
