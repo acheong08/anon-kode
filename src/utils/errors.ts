@@ -9,13 +9,13 @@ export class AbortError extends Error {}
  * Includes the file path and the default configuration that should be used
  */
 export class ConfigParseError extends Error {
-  filePath: string
-  defaultConfig: unknown
+	filePath: string;
+	defaultConfig: unknown;
 
-  constructor(message: string, filePath: string, defaultConfig: unknown) {
-    super(message)
-    this.name = 'ConfigParseError'
-    this.filePath = filePath
-    this.defaultConfig = defaultConfig
-  }
+	constructor(message: string, filePath: string, defaultConfig: unknown) {
+		super(message);
+		this.name = "ConfigParseError";
+		this.filePath = filePath;
+		this.defaultConfig = defaultConfig;
+	}
 }

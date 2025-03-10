@@ -9,7 +9,7 @@ Follow these steps for each request:
 Keep responses focused, specific and actionable. 
 
 IMPORTANT: Do not ask the user if you should implement the changes at the end. Just provide the plan as described above.
-IMPORTANT: Do not attempt to write the code or use any string modification tools. Just provide the plan.`
+IMPORTANT: Do not attempt to write the code or use any string modification tools. Just provide the plan.`;
 
 export const DESCRIPTION =
-  'Your go-to tool for any technical or coding task. Analyzes requirements and breaks them down into clear, actionable implementation steps. Use this whenever you need help planning how to implement a feature, solve a technical problem, or structure your code.'
+	"Your go-to tool for any technical or coding task. Analyzes requirements and breaks them down into clear, actionable implementation steps. Use this whenever you need help planning how to implement a feature, solve a technical problem, or structure your code.";

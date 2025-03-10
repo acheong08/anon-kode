@@ -1,10 +1,10 @@
-import { isAbsolute, resolve } from 'path'
-import { getCwd, getOriginalCwd } from '../state'
+import { isAbsolute, resolve } from "path";
+import { getCwd, getOriginalCwd } from "../state";
 
 // In-memory storage for file permissions that resets each session
 // Sets of allowed directories for read and write operations
-const readFileAllowedDirectories: Set<string> = new Set()
-const writeFileAllowedDirectories: Set<string> = new Set()
+const readFileAllowedDirectories: Set<string> = new Set();
+const writeFileAllowedDirectories: Set<string> = new Set();
 
 /**
  * Ensures a path is absolute by resolving it relative to cwd if necessary
@@ -12,7 +12,7 @@ const writeFileAllowedDirectories: Set<string> = new Set()
  * @returns Absolute path
  */
 export function toAbsolutePath(path: string): string {
-  return isAbsolute(path) ? resolve(path) : resolve(getCwd(), path)
+	return isAbsolute(path) ? resolve(path) : resolve(getCwd(), path);
 }
 
 /**
@@ -21,8 +21,8 @@ export function toAbsolutePath(path: string): string {
  * @returns Absolute path
  */
 export function pathInOriginalCwd(path: string): boolean {
-  const absolutePath = toAbsolutePath(path)
-  return absolutePath.startsWith(toAbsolutePath(getOriginalCwd()))
+	const absolutePath = toAbsolutePath(path);
+	return absolutePath.startsWith(toAbsolutePath(getOriginalCwd()));
 }
 
 /**
@@ -31,15 +31,15 @@ export function pathInOriginalCwd(path: string): boolean {
  * @returns true if read permission exists, false otherwise
  */
 export function hasReadPermission(directory: string): boolean {
-  const absolutePath = toAbsolutePath(directory)
+	const absolutePath = toAbsolutePath(directory);
 
-  for (const allowedPath of readFileAllowedDirectories) {
-    // Permission exists for this directory or a path prefix
-    if (absolutePath.startsWith(allowedPath)) {
-      return true
-    }
-  }
-  return false
+	for (const allowedPath of readFileAllowedDirectories) {
+		// Permission exists for this directory or a path prefix
+		if (absolutePath.startsWith(allowedPath)) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -48,15 +48,15 @@ export function hasReadPermission(directory: string): boolean {
  * @returns true if write permission exists, false otherwise
  */
 export function hasWritePermission(directory: string): boolean {
-  const absolutePath = toAbsolutePath(directory)
+	const absolutePath = toAbsolutePath(directory);
 
-  for (const allowedPath of writeFileAllowedDirectories) {
-    // Permission exists for this directory or a path prefix
-    if (absolutePath.startsWith(allowedPath)) {
-      return true
-    }
-  }
-  return false
+	for (const allowedPath of writeFileAllowedDirectories) {
+		// Permission exists for this directory or a path prefix
+		if (absolutePath.startsWith(allowedPath)) {
+			return true;
+		}
+	}
+	return false;
 }
 
 /**
@@ -64,26 +64,26 @@ export function hasWritePermission(directory: string): boolean {
  * @param directory The directory to grant read permission for
  */
 function saveReadPermission(directory: string): void {
-  const absolutePath = toAbsolutePath(directory)
+	const absolutePath = toAbsolutePath(directory);
 
-  // Clean up any existing subdirectories of this path
-  for (const allowedPath of readFileAllowedDirectories) {
-    if (allowedPath.startsWith(absolutePath)) {
-      readFileAllowedDirectories.delete(allowedPath)
-    }
-  }
-  readFileAllowedDirectories.add(absolutePath)
+	// Clean up any existing subdirectories of this path
+	for (const allowedPath of readFileAllowedDirectories) {
+		if (allowedPath.startsWith(absolutePath)) {
+			readFileAllowedDirectories.delete(allowedPath);
+		}
+	}
+	readFileAllowedDirectories.add(absolutePath);
 }
 
-export const saveReadPermissionForTest = saveReadPermission
+export const saveReadPermissionForTest = saveReadPermission;
 
 /**
  * Grants read permission for the original project directory.
  * This is useful for initializing read access to the project root.
  */
 export function grantReadPermissionForOriginalDir(): void {
-  const originalProjectDir = getOriginalCwd()
-  saveReadPermission(originalProjectDir)
+	const originalProjectDir = getOriginalCwd();
+	saveReadPermission(originalProjectDir);
 }
 
 /**
@@ -91,15 +91,15 @@ export function grantReadPermissionForOriginalDir(): void {
  * @param directory The directory to grant write permission for
  */
 function saveWritePermission(directory: string): void {
-  const absolutePath = toAbsolutePath(directory)
+	const absolutePath = toAbsolutePath(directory);
 
-  // Clean up any existing subdirectories of this path
-  for (const allowedPath of writeFileAllowedDirectories) {
-    if (allowedPath.startsWith(absolutePath)) {
-      writeFileAllowedDirectories.delete(allowedPath)
-    }
-  }
-  writeFileAllowedDirectories.add(absolutePath)
+	// Clean up any existing subdirectories of this path
+	for (const allowedPath of writeFileAllowedDirectories) {
+		if (allowedPath.startsWith(absolutePath)) {
+			writeFileAllowedDirectories.delete(allowedPath);
+		}
+	}
+	writeFileAllowedDirectories.add(absolutePath);
 }
 
 /**
@@ -107,12 +107,12 @@ function saveWritePermission(directory: string): void {
  * This is useful for initializing write access to the project root.
  */
 export function grantWritePermissionForOriginalDir(): void {
-  const originalProjectDir = getOriginalCwd()
-  saveWritePermission(originalProjectDir)
+	const originalProjectDir = getOriginalCwd();
+	saveWritePermission(originalProjectDir);
 }
 
 // For testing purposes
 export function clearFilePermissions(): void {
-  readFileAllowedDirectories.clear()
-  writeFileAllowedDirectories.clear()
+	readFileAllowedDirectories.clear();
+	writeFileAllowedDirectories.clear();
 }

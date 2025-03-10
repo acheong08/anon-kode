@@ -1,4 +1,4 @@
-import { NotebookEditTool } from '../NotebookEditTool/NotebookEditTool'
+import { NotebookEditTool } from "../NotebookEditTool/NotebookEditTool";
 
 export const DESCRIPTION = `This is a tool for editing files. For moving or renaming files, you should generally use the Bash tool with the 'mv' command instead. For larger edits, use the Write tool to overwrite files. For Jupyter notebooks (.ipynb files), use the ${NotebookEditTool.name} instead.
 
@@ -48,4 +48,4 @@ If you want to create a new file, use:
    - The new file's contents as new_string
 
 Remember: when making multiple file edits in a row to the same file, you should prefer to send all edits in a single message with multiple calls to this tool, rather than multiple messages with a single call each.
-`
+`;

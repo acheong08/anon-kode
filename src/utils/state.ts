@@ -1,25 +1,25 @@
-import { cwd } from 'process'
-import { PersistentShell } from './PersistentShell'
+import { cwd } from "process";
+import { PersistentShell } from "./PersistentShell";
 
 // DO NOT ADD MORE STATE HERE OR BORIS WILL CURSE YOU
 const STATE: {
-  originalCwd: string
+	originalCwd: string;
 } = {
-  originalCwd: cwd(),
-}
+	originalCwd: cwd(),
+};
 
 export async function setCwd(cwd: string): Promise<void> {
-  await PersistentShell.getInstance().setCwd(cwd)
+	await PersistentShell.getInstance().setCwd(cwd);
 }
 
 export function setOriginalCwd(cwd: string): void {
-  STATE.originalCwd = cwd
+	STATE.originalCwd = cwd;
 }
 
 export function getOriginalCwd(): string {
-  return STATE.originalCwd
+	return STATE.originalCwd;
 }
 
 export function getCwd(): string {
-  return PersistentShell.getInstance().pwd()
+	return PersistentShell.getInstance().pwd();
 }

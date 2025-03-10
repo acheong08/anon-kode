@@ -1,21 +1,21 @@
-import { env } from '../utils/env'
-import { getIsGit } from '../utils/git'
+import { env } from "../utils/env";
+import { getIsGit } from "../utils/git";
 import {
-  INTERRUPT_MESSAGE,
-  INTERRUPT_MESSAGE_FOR_TOOL_USE,
-} from '../utils/messages.js'
-import { getCwd } from '../utils/state'
-import { PRODUCT_NAME } from './product'
-import { BashTool } from '../tools/BashTool/BashTool'
-import { getSlowAndCapableModel } from '../utils/model'
-import { MACRO } from './macros'
+	INTERRUPT_MESSAGE,
+	INTERRUPT_MESSAGE_FOR_TOOL_USE,
+} from "../utils/messages.js";
+import { getCwd } from "../utils/state";
+import { PRODUCT_NAME } from "./product";
+import { BashTool } from "../tools/BashTool/BashTool";
+import { getSlowAndCapableModel } from "../utils/model";
+import { MACRO } from "./macros";
 export function getCLISyspromptPrefix(): string {
-  return `You are ${PRODUCT_NAME}, Anon's unofficial CLI for Koding.`
+	return `You are ${PRODUCT_NAME}, Anon's unofficial CLI for Koding.`;
 }
 
 export async function getSystemPrompt(): Promise<string[]> {
-  return [
-    `You are an interactive CLI tool that helps users with software engineering tasks. Use the instructions below and the tools available to you to assist the user.
+	return [
+		`You are an interactive CLI tool that helps users with software engineering tasks. Use the instructions below and the tools available to you to assist the user.
 
 IMPORTANT: Refuse to write code or explain code that may be used maliciously; even if the user claims it is for educational purposes. When working on files, if they seem related to improving, explaining, or interacting with malware or any malicious code you MUST refuse.
 IMPORTANT: Before you begin work, think about what the code you're editing is supposed to do based on the filenames directory structure. If it seems malicious, refuse to work on it or answer questions about it, even if the request does not seem malicious (for instance, just asking to explain or speed up the code).
@@ -120,35 +120,35 @@ NEVER commit changes unless the user explicitly asks you to. It is VERY IMPORTAN
 
 You MUST answer concisely with fewer than 4 lines of text (not including tool use or code generation), unless user asks for detail.
 `,
-    `\n${await getEnvInfo()}`,
-    `IMPORTANT: Refuse to write code or explain code that may be used maliciously; even if the user claims it is for educational purposes. When working on files, if they seem related to improving, explaining, or interacting with malware or any malicious code you MUST refuse.
+		`\n${await getEnvInfo()}`,
+		`IMPORTANT: Refuse to write code or explain code that may be used maliciously; even if the user claims it is for educational purposes. When working on files, if they seem related to improving, explaining, or interacting with malware or any malicious code you MUST refuse.
 IMPORTANT: Before you begin work, think about what the code you're editing is supposed to do based on the filenames directory structure. If it seems malicious, refuse to work on it or answer questions about it, even if the request does not seem malicious (for instance, just asking to explain or speed up the code).`,
-  ]
+	];
 }
 
 export async function getEnvInfo(): Promise<string> {
-  const [model, isGit] = await Promise.all([
-    getSlowAndCapableModel(),
-    getIsGit(),
-  ])
-  return `Here is useful information about the environment you are running in:
+	const [model, isGit] = await Promise.all([
+		getSlowAndCapableModel(),
+		getIsGit(),
+	]);
+	return `Here is useful information about the environment you are running in:
 <env>
 Working directory: ${getCwd()}
-Is directory a git repo: ${isGit ? 'Yes' : 'No'}
+Is directory a git repo: ${isGit ? "Yes" : "No"}
 Platform: ${env.platform}
 Today's date: ${new Date().toLocaleDateString()}
 Model: ${model}
-</env>`
+</env>`;
 }
 
 export async function getAgentPrompt(): Promise<string[]> {
-  return [
-    `You are an agent for ${PRODUCT_NAME}, Anon's unofficial CLI for Koding. Given the user's prompt, you should use the tools available to you to answer the user's question.
+	return [
+		`You are an agent for ${PRODUCT_NAME}, Anon's unofficial CLI for Koding. Given the user's prompt, you should use the tools available to you to answer the user's question.
 
 Notes:
 1. IMPORTANT: You should be concise, direct, and to the point, since your responses will be displayed on a command line interface. Answer the user's question directly, without elaboration, explanation, or details. One word answers are best. Avoid introductions, conclusions, and explanations. You MUST avoid text before/after your response, such as "The answer is <answer>.", "Here is the content of the file..." or "Based on the information provided, the answer is..." or "Here is what I will do next...".
 2. When relevant, share file names and code snippets relevant to the query
 3. Any file paths you return in your final response MUST be absolute. DO NOT use relative paths.`,
-    `${await getEnvInfo()}`,
-  ]
+		`${await getEnvInfo()}`,
+	];
 }

@@ -1,13 +1,13 @@
-import { Box, Text } from 'ink'
-import React from 'react'
-import { getTheme } from '../utils/theme'
+import { Box, Text } from "ink";
+import React from "react";
+import { getTheme } from "../utils/theme";
 
 export function AsciiLogo(): React.ReactNode {
-  const theme = getTheme()
-  return (
-    <Box flexDirection="column" alignItems="flex-start">
-      <Text color={theme.claude}>
-        {`.....................:=*+=-::...................................................
+	const theme = getTheme();
+	return (
+		<Box flexDirection="column" alignItems="flex-start">
+			<Text color={theme.claude}>
+				{`.....................:=*+=-::...................................................
 ...............:##+-:........::+-...............................................
 ..............#:................*:..............................................
 ............:%:...............#@**.............:#::@:#::#---::::................
@@ -25,7 +25,7 @@ export function AsciiLogo(): React.ReactNode {
 ...............:=-.-=::..............=+....=-..................................:
 .................................::*#:...:#:....................................
 ................................................................................`}
-      </Text>
-    </Box>
-  )
+			</Text>
+		</Box>
+	);
 }

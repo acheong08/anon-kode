@@ -1,41 +1,41 @@
-import * as React from 'react'
-import type { Command } from '../commands'
-import { getGlobalConfig, saveGlobalConfig } from '../utils/config'
-import { clearTerminal } from '../utils/terminal'
-import { Text } from 'ink'
+import * as React from "react";
+import type { Command } from "../commands";
+import { getGlobalConfig, saveGlobalConfig } from "../utils/config";
+import { clearTerminal } from "../utils/terminal";
+import { Text } from "ink";
 
 export default {
-  type: 'local-jsx',
-  name: 'logout',
-  description: 'Sign out from your Anthropic account',
-  isEnabled: true,
-  isHidden: false,
-  async call() {
-    await clearTerminal()
+	type: "local-jsx",
+	name: "logout",
+	description: "Sign out from your Anthropic account",
+	isEnabled: true,
+	isHidden: false,
+	async call() {
+		await clearTerminal();
 
-    const config = getGlobalConfig()
+		const config = getGlobalConfig();
 
-    config.oauthAccount = undefined
-    config.primaryApiKey = undefined
-    config.hasCompletedOnboarding = false
+		config.oauthAccount = undefined;
+		config.primaryApiKey = undefined;
+		config.hasCompletedOnboarding = false;
 
-    if (config.customApiKeyResponses?.approved) {
-      config.customApiKeyResponses.approved = []
-    }
+		if (config.customApiKeyResponses?.approved) {
+			config.customApiKeyResponses.approved = [];
+		}
 
-    saveGlobalConfig(config)
+		saveGlobalConfig(config);
 
-    const message = (
-      <Text>Successfully logged out from your Anthropic account.</Text>
-    )
+		const message = (
+			<Text>Successfully logged out from your Anthropic account.</Text>
+		);
 
-    setTimeout(() => {
-      process.exit(0)
-    }, 200)
+		setTimeout(() => {
+			process.exit(0);
+		}, 200);
 
-    return message
-  },
-  userFacingName() {
-    return 'logout'
-  },
-} satisfies Command
+		return message;
+	},
+	userFacingName() {
+		return "logout";
+	},
+} satisfies Command;

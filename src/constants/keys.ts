@@ -1,5 +1,3 @@
-export const SENTRY_DSN =
-  ''
+export const SENTRY_DSN = "";
 
-export const STATSIG_CLIENT_KEY =
-  ''
+export const STATSIG_CLIENT_KEY = "";

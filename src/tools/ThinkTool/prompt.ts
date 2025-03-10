@@ -1,5 +1,5 @@
 export const DESCRIPTION =
-  'This is a no-op tool that logs a thought. It is inspired by the tau-bench think tool.'
+	"This is a no-op tool that logs a thought. It is inspired by the tau-bench think tool.";
 export const PROMPT = `Use the tool to think about something. It will not obtain new information or make any changes to the repository, but just log the thought. Use it when complex reasoning or brainstorming is needed. 
 
 Common use cases:
@@ -9,4 +9,4 @@ Common use cases:
 4. When designing a new feature, use this tool to think through architecture decisions and implementation details
 5. When debugging a complex issue, use this tool to organize your thoughts and hypotheses
 
-The tool simply logs your thought process for better transparency and does not execute any code or make changes.`
+The tool simply logs your thought process for better transparency and does not execute any code or make changes.`;

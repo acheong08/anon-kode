@@ -1,24 +1,24 @@
-import type { Message } from './query'
+import type { Message } from "./query";
 
-let getMessages: () => Message[] = () => []
-let setMessages: React.Dispatch<React.SetStateAction<Message[]>> = () => {}
+let getMessages: () => Message[] = () => [];
+let setMessages: React.Dispatch<React.SetStateAction<Message[]>> = () => {};
 
 export function setMessagesGetter(getter: () => Message[]) {
-  getMessages = getter
+	getMessages = getter;
 }
 
 export function getMessagesGetter(): () => Message[] {
-  return getMessages
+	return getMessages;
 }
 
 export function setMessagesSetter(
-  setter: React.Dispatch<React.SetStateAction<Message[]>>,
+	setter: React.Dispatch<React.SetStateAction<Message[]>>,
 ) {
-  setMessages = setter
+	setMessages = setter;
 }
 
 export function getMessagesSetter(): React.Dispatch<
-  React.SetStateAction<Message[]>
+	React.SetStateAction<Message[]>
 > {
-  return setMessages
+	return setMessages;
 }

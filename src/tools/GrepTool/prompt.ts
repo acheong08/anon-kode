@@ -1,4 +1,4 @@
-export const TOOL_NAME_FOR_PROMPT = 'GrepTool'
+export const TOOL_NAME_FOR_PROMPT = "GrepTool";
 
 export const DESCRIPTION = `
 - Fast content search tool that works with any codebase size
@@ -8,4 +8,4 @@ export const DESCRIPTION = `
 - Returns matching file paths sorted by modification time
 - Use this tool when you need to find files containing specific patterns
 - When you are doing an open ended search that may require multiple rounds of globbing and grepping, use the Agent tool instead
-`
+`;

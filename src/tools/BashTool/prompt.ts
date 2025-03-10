@@ -1,31 +1,31 @@
-import { PRODUCT_NAME, PRODUCT_URL } from '../../constants/product'
-import { TOOL_NAME as AGENT_TOOL_NAME } from '../AgentTool/constants'
-import { FileReadTool } from '../FileReadTool/FileReadTool'
-import { TOOL_NAME_FOR_PROMPT as GLOB_TOOL_NAME } from '../GlobTool/prompt'
-import { TOOL_NAME_FOR_PROMPT as GREP_TOOL_NAME } from '../GrepTool/prompt'
-import { LSTool } from '../lsTool/lsTool'
+import { PRODUCT_NAME, PRODUCT_URL } from "../../constants/product";
+import { TOOL_NAME as AGENT_TOOL_NAME } from "../AgentTool/constants";
+import { FileReadTool } from "../FileReadTool/FileReadTool";
+import { TOOL_NAME_FOR_PROMPT as GLOB_TOOL_NAME } from "../GlobTool/prompt";
+import { TOOL_NAME_FOR_PROMPT as GREP_TOOL_NAME } from "../GrepTool/prompt";
+import { LSTool } from "../lsTool/lsTool";
 
-export const MAX_OUTPUT_LENGTH = 30000
-export const MAX_RENDERED_LINES = 50
+export const MAX_OUTPUT_LENGTH = 30000;
+export const MAX_RENDERED_LINES = 50;
 export const BANNED_COMMANDS = [
-  'alias',
-  'curl',
-  'curlie',
-  'wget',
-  'axel',
-  'aria2c',
-  'nc',
-  'telnet',
-  'lynx',
-  'w3m',
-  'links',
-  'httpie',
-  'xh',
-  'http-prompt',
-  'chrome',
-  'firefox',
-  'safari',
-]
+	"alias",
+	"curl",
+	"curlie",
+	"wget",
+	"axel",
+	"aria2c",
+	"nc",
+	"telnet",
+	"lynx",
+	"w3m",
+	"links",
+	"httpie",
+	"xh",
+	"http-prompt",
+	"chrome",
+	"firefox",
+	"safari",
+];
 
 export const PROMPT = `Executes a given bash command in a persistent shell session with optional timeout, ensuring proper handling and security measures.
 
@@ -37,7 +37,7 @@ Before executing the command, please follow these steps:
 
 2. Security Check:
    - For security and to limit the threat of a prompt injection attack, some commands are limited or banned. If you use a disallowed command, you will receive an error message explaining the restriction. Explain the error to the User.
-   - Verify that the command is not one of the banned commands: ${BANNED_COMMANDS.join(', ')}.
+   - Verify that the command is not one of the banned commands: ${BANNED_COMMANDS.join(", ")}.
 
 3. Command Execution:
    - After ensuring proper quoting, execute the command.
@@ -93,7 +93,7 @@ When the user asks you to create a new git commit, follow these steps carefully:
 </commit_analysis>
 
 4. Create the commit with a message ending with:
-🤖 Generated with ${process.env.USER_TYPE === 'ant' ? `[${PRODUCT_NAME}](${PRODUCT_URL})` : PRODUCT_NAME}
+🤖 Generated with ${process.env.USER_TYPE === "ant" ? `[${PRODUCT_NAME}](${PRODUCT_URL})` : PRODUCT_NAME}
 Co-Authored-By: Claude <noreply@anthropic.com>
 
 - In order to ensure good formatting, ALWAYS pass the commit message via a HEREDOC, a la this example:
@@ -101,7 +101,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 git commit -m "$(cat <<'EOF'
    Commit message here.
 
-   🤖 Generated with ${process.env.USER_TYPE === 'ant' ? `[${PRODUCT_NAME}](${PRODUCT_URL})` : PRODUCT_NAME}
+   🤖 Generated with ${process.env.USER_TYPE === "ant" ? `[${PRODUCT_NAME}](${PRODUCT_URL})` : PRODUCT_NAME}
    Co-Authored-By: Claude <noreply@anthropic.com>
    EOF
    )"
@@ -164,11 +164,11 @@ gh pr create --title "the pr title" --body "$(cat <<'EOF'
 ## Test plan
 [Checklist of TODOs for testing the pull request...]
 
-🤖 Generated with ${process.env.USER_TYPE === 'ant' ? `[${PRODUCT_NAME}](${PRODUCT_URL})` : PRODUCT_NAME}
+🤖 Generated with ${process.env.USER_TYPE === "ant" ? `[${PRODUCT_NAME}](${PRODUCT_URL})` : PRODUCT_NAME}
 EOF
 )"
 </example>
 
 Important:
 - Return an empty response - the user will see the gh output directly
-- Never update git config`
+- Never update git config`;
